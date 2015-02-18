@@ -1,9 +1,13 @@
 package com.cp.dma.dma_android_webconnectivity;
 
 import android.support.v7.app.ActionBarActivity;
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 public class MainActivity extends ActionBarActivity {
 
@@ -11,7 +15,41 @@ public class MainActivity extends ActionBarActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+
+		boolean val = this.checkWebConnection(); 
+
+		if (val == true) { 
+
+			Toast.makeText(MainActivity.this, "You have an Internet Connection",Toast.LENGTH_LONG).show(); 
+
+		} else {
+
+			Toast.makeText(MainActivity.this, " No Internet Connection",Toast.LENGTH_LONG).show();
+		}
+
 	}
+
+	public boolean checkWebConnection() { 
+
+		ConnectivityManager mgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE); 
+
+		NetworkInfo info = mgr.getActiveNetworkInfo();
+
+		if (info.isConnectedOrConnecting()) {
+
+			if (info.isConnected()) {
+
+				return true;
+
+			}
+
+			return false;
+
+		}
+
+		return false;
+	}
+
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
