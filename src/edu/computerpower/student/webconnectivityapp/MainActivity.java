@@ -1,4 +1,6 @@
-package com.cp.dma.dma_android_webconnectivity;
+package edu.computerpower.student.webconnectivityapp;
+
+import com.cp.dma.dma_android_webconnectivity.R;
 
 import android.support.v7.app.ActionBarActivity;
 import android.content.Context;
